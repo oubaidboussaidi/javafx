@@ -4,9 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.web.HTMLEditor;
-import org.w3c.dom.events.MouseEvent;
-
-import javax.swing.*;
 
 public class FXMLArticleController {
 
@@ -46,12 +43,81 @@ public class FXMLArticleController {
     }
 
     @FXML
-    private void enLigne(MouseEvent event){
+    private void enLigne(ActionEvent event){
         if(Ligne.isSelected()){
             Editor.setVisible(true);
             Editor.setHtmlText(leArticle.genererHTML());
         }else{
             Editor.setVisible(false);
         }
+    }
+
+    @FXML
+    private void enregistrer(ActionEvent event){
+        String tref = Ref.getText();
+        int r = Integer.parseInt(tref);
+
+        this.leArticle = new Article(r);
+        leArticle.setLibelle(this.Lib.getText());
+        leArticle.setDescription(this.Desc.getText());
+        leArticle.setCategorie(this.Cat.getValue());
+
+        String tprix = this.Prix.getText();
+
+        float pr = Float.parseFloat(tprix);
+        leArticle.setPrixHT(pr);
+
+        String ttva = this.Tva.getText();
+        leArticle.setTVA(Float.parseFloat(ttva));
+
+        if(this.Carton.isSelected()){
+            leArticle.setUnite("carton");
+        }else if (this.Boite.isSelected()){
+            leArticle.setUnite("boite");
+        }else if(this.Bouteille.isSelected()){
+            leArticle.setUnite("bouteille");
+        }
+
+        leArticle.setPoids((int) Poids.getValue());
+
+        if(Fragile.isSelected()){
+            leArticle.setFragile(true);
+        }else{
+            leArticle.setFragile(false);
+        }
+
+        if(this.Consigne.isSelected()){
+            if(this.Palette.isSelected()){
+                leArticle.setConsigne("palette");
+            }
+        }else{
+            if(this.consBouteille.isSelected()){
+                leArticle.setConsigne("bouteille");
+            }
+        }
+
+        if(this.Promo.isSelected()){
+            leArticle.setPromotion(true);
+        }
+
+        if(this.Ligne.isSelected()){
+            leArticle.setEnLigne(true);
+        }
+    }
+
+    @FXML
+    private void afficher(ActionEvent event){
+        Alert a = new Alert(Alert.AlertType.INFORMATION);
+        a.setTitle("article");
+        a.setContentText(leArticle.toString());
+        a.show();
+    }
+
+    @FXML
+    private void affichPrix(ActionEvent event){
+        Alert a = new Alert(Alert.AlertType.INFORMATION);
+        a.setTitle("prix ttc de l'article");
+        a.setContentText("prix ttc : "+leArticle.calculerTTc());
+        a.show();
     }
 }
