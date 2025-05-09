@@ -22,7 +22,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="633.0" prefWidth="419.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stock.FXMLArticleController">
     <children>
-        <Button onAction="#enregistrer" defaultButton="true" layoutX="55.0" layoutY="581.0" text="_Enregistrer">
+        <Button onAction="#enregistrer" blendMode="MULTIPLY" defaultButton="true" layoutX="55.0" layoutY="581.0" text="_Enregistrer">
             <effect>
             <Blend />
             </effect></Button>
@@ -70,6 +70,7 @@
         <Label layoutX="334.0" layoutY="237.0" text="\%" />
         <Label layoutX="146.0" layoutY="275.0" text="unité :" />
         <RadioButton fx:id="Carton" layoutX="183.0" layoutY="275.0" mnemonicParsing="false" selected="true" text="carton">
+
         <toggleGroup>
             <ToggleGroup fx:id="gunite" />
          </toggleGroup></RadioButton>
@@ -84,8 +85,8 @@
         <Label layoutX="318.0" layoutY="315.0" text="kg" />
         <CheckBox fx:id="Promo" layoutX="37.0" layoutY="393.0" mnemonicParsing="false" text="en promotion" />
         <CheckBox fx:id="Fragile" layoutX="37.0" layoutY="358.0" mnemonicParsing="false" text="fragile" />
-        <CheckBox onAction="#enLigne" fx:id="Ligne" layoutX="145.0" layoutY="393.0" mnemonicParsing="false" text="disponible en ligne" />
-        <CheckBox onAction="#avecConsigne" fx:id="Consigne" layoutX="110.0" layoutY="358.0" mnemonicParsing="false" text="consigne" />
+        <CheckBox fx:id="Consigne" onAction="#avecConsigne" layoutX="110.0" layoutY="358.0" mnemonicParsing="false" text="consigne" />
+        <CheckBox fx:id="Ligne" onAction="#enLigne" layoutX="145.0" layoutY="393.0" mnemonicParsing="false" text="disponible en ligne" />
         <RadioButton fx:id="Palette" layoutX="203.0" layoutY="358.0" mnemonicParsing="false" text="palette" visible="false">
          <toggleGroup>
             <ToggleGroup fx:id="gconsigne" />
@@ -96,12 +97,12 @@
         <menus>
           <Menu mnemonicParsing="false" text="_Article">
             <items>
-              <MenuItem mnemonicParsing="false" onAction="#Enregistrer" text="Enregistrer">
+              <MenuItem onAction="#enregistrer" mnemonicParsing="false" text="Enregistrer">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="E" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator>
                   </MenuItem>
-                  <MenuItem mnemonicParsing="false" text="Afficher">
+                  <MenuItem onAction="#afficher" mnemonicParsing="false" text="Afficher">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="A" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator>

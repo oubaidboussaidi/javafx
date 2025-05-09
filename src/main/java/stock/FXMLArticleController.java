@@ -28,23 +28,19 @@ public class FXMLArticleController {
     private Article leArticle;
 
     @FXML
-    private void Enregistrer() {
-        System.out.println("Bouton Enregistrer cliqué Ref : "+this.Ref.getText());
-    }
-
-    @FXML
     private void avecConsigne(ActionEvent event){
         if(this.Consigne.isSelected()){
-            Palette.setVisible(true);
+            this.Palette.setVisible(true);
+            this.consBouteille.setVisible(true);
         }else{
-            Palette.setVisible(false);
-            consBouteille.setVisible(false);
+            this.Palette.setVisible(false);
+            this.consBouteille.setVisible(false);
         }
     }
 
     @FXML
     private void enLigne(ActionEvent event){
-        if(Ligne.isSelected()){
+        if(Ligne.isSelected() && leArticle!=null){
             Editor.setVisible(true);
             Editor.setHtmlText(leArticle.genererHTML());
         }else{
